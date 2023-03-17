@@ -20,6 +20,35 @@ namespace LeClassi
                 );
 
             person1.GetValues();
+
+            AssegnoSociale bonus = new Bonus();
+            AssegnoSociale naspi = new Naspi();
+
+            Person lavoratore = new Lavoratore(
+                "Bruno",
+                "Ferreira",
+                40,
+                92,
+                29,
+                false,
+                0,
+                false,
+                true,
+                900000M);
+            Person nonLavoratore = new NonLavoratore(
+                "Bruno",
+                "Ferreira",
+                40,
+                92,
+                29,
+                false,
+                0,
+                false,
+                true,
+                900000M);
+
+            bonus.calcolaAssegno(lavoratore);
+            naspi.calcolaAssegno(nonLavoratore);
         }
 
         internal class Person
@@ -38,15 +67,23 @@ namespace LeClassi
             bool _militare;
             bool _debiti;
             int _punteggio;
-            const int indiceBonus = 35;
 
             public string Name { get { return _name; } }
             public string Surname { get { return _surname; } }
+            public int Age { get { return _age; } set { _age = value; } }
+            public decimal Bonus { get { return _bonus; } set { _bonus = value; } }
+            public decimal PilComune { get { return _pilComune; } set { _pilComune = value; } }
+            public int Maturita { get { return _maturita; } set { _maturita = value; } }
+            public int Punteggio { get { return _punteggio; } set { _punteggio = value; } }
+            public int Figli { get { return _figli; } set { _figli = value; } }
+            public bool Debiti { get { return _debiti; } set { _debiti = value; } }
+            public int Università { get { return _universita; } set { _universita = value; } }
+            public bool FedinaPenale { get { return _fedinaPenale; } set { _fedinaPenale = value; } }
+
             public string FullName { get { return _name + " " + _surname; } }
-            public bool IsAdult { get { return _isAdult; } }
-
+            public bool IsAdult { get { return _isAdult; } set { _isAdult = value; } }
+            
             public Person(
-
                 string Name,
                 string Surname,
                 int Age,
@@ -57,23 +94,23 @@ namespace LeClassi
                 bool Militare,
                 bool Debiti,
                 decimal PilComune
-                ) // firma del costruttore
+                )
             {
                 _name = Name;
                 _surname = Surname;
                 // variabili per il BONUS 
-                _age = Age;
-                _maturita = Maturita;
+                this.Age = Age;
+                this.Maturita = Maturita;
                 _universita = Universita;
                 _fedinaPenale = FedinaPenale;
                 _figli = Figli;
                 _militare = Militare;
                 _debiti = Debiti;
-                _pilComune = PilComune;
+                this.PilComune = PilComune;
 
                 counter++;
                 SetIsAdult();
-                CalcolaBonus();
+                //CalcolaBonus();
             }
             public void GetValues()
             {
@@ -85,12 +122,12 @@ namespace LeClassi
                 //$"FedinaPenale:{_fedinaPenale}" +
                 //$"Debiti: {_debiti}"
                 //);
-                Console.WriteLine($"Nome:{_name}");
-                Console.WriteLine($"Cognome:{_surname}");
-                Console.WriteLine($"Age:{_age}");
-                Console.WriteLine($"Maturita:{_maturita}");
-                Console.WriteLine($"Debiti:{_debiti}");
-                Console.WriteLine($"Bonus ricevuto:{_bonus}");
+                Console.WriteLine($"Nome:{Name}");
+                Console.WriteLine($"Cognome:{Surname}");
+                Console.WriteLine($"Age:{this.Age}");
+                Console.WriteLine($"Maturita:{this.Maturita}");
+                Console.WriteLine($"Debiti:{Debiti}");
+                Console.WriteLine($"Bonus ricevuto:{this.Bonus}");
             }
 
             public int GetCounter()
@@ -100,61 +137,184 @@ namespace LeClassi
 
             private void SetIsAdult()
             {
-                if (_age > 18)
+                if (this.Age > 18)
                 {
-                    _isAdult = true;
+                    IsAdult = true;
                 }
                 else
                 {
-                    _isAdult = false;
+                    IsAdult = false;
                 }
             }
 
-            private void CalcolaBonus()
+            /*private void CalcolaBonus()
             {
 
-                if (_maturita >= 90)
+                if (this.Maturita >= 90)
                 {
-                    _punteggio += 7;
+                    Punteggio += 7;
                 }
 
-                if (_isAdult && _age <= 28)
+                if (IsAdult && Age <= 28)
                 {
-                    _punteggio += 6;
+                    Punteggio += 6;
                 }
 
-                if (_universita > 28)
+                if (Università > 28)
                 {
-                    _punteggio += 6;
+                    Punteggio += 6;
                 }
 
-                if (_figli > 0)
+                if (Figli > 0)
                 {
-                    for (int i = 0; i < _figli; i++)
+                    for (int i = 0; i < Figli; i++)
                     {
-                        _punteggio += 4;
+                        Punteggio += 4;
                     }
                 }
 
-                if (!_fedinaPenale)
+                if (!FedinaPenale)
                 {
-                    _punteggio += 6;
+                    Punteggio += 6;
                 }
 
-                if (!_debiti)
+                if (!Debiti)
                 {
-                    _punteggio += 6;
+                    Punteggio += 6;
                 }
 
-                if (_pilComune < 1000000)
+                if (this.PilComune < 1000000)
                 {
-                    _punteggio += 7;
+                    Punteggio += 7;
                 }
 
-                if (_punteggio > indiceBonus && IsAdult)
+                if (Punteggio > IndiceBonus && IsAdult)
                 {
-                    _bonus = 10000;
+                    this.Bonus = 10000;
                 }
+            }*/
+        }
+
+        internal class Lavoratore : Person
+        {
+            bool lavoro = true;
+            decimal _stipendio;
+
+            public Lavoratore(string Name, string Surname, int Age, int Maturita, int Universita, bool FedinaPenale, int Figli, bool Militare, bool Debiti, decimal PilComune) : base(Name, Surname, Age, Maturita, Universita, FedinaPenale, Figli, Militare, Debiti, PilComune)
+            {
+            }
+        }
+
+        internal class NonLavoratore : Person
+        {
+            bool _lavoro = false;
+            bool _cDeterminato;
+            bool _cFullTime;
+            int _mesiLavoro;
+
+            public NonLavoratore(string Name, string Surname, int Age, int Maturita, int Universita, bool FedinaPenale, int Figli, bool Militare, bool Debiti, decimal PilComune) : base(Name, Surname, Age, Maturita, Universita, FedinaPenale, Figli, Militare, Debiti, PilComune)
+            {
+            }
+
+            public bool Lavoro { get => _lavoro; set => _lavoro = value; }
+            public bool CDeterminato { get => _cDeterminato; set => _cDeterminato = value; }
+            public bool CFullTime { get => _cFullTime; set => _cFullTime = value; }
+            public int MesiLavoro { get => _mesiLavoro; set => _mesiLavoro = value; }
+        }
+
+        internal class AssegnoSociale
+        {
+            decimal _contributo;
+
+            public decimal Contributo { get => _contributo; set => _contributo = value; }
+
+            public virtual void calcolaAssegno(Person person)
+            {
+
+            }
+        }
+
+        internal class Bonus : AssegnoSociale
+        {
+            const int indiceBonus = 35;
+            public static int IndiceBonus => indiceBonus;
+
+            public override void calcolaAssegno(Person lavoratore)
+            {
+                if (lavoratore.Maturita >= 90)
+                {
+                    lavoratore.Punteggio += 7;
+                }
+
+                if (lavoratore.IsAdult && lavoratore.Age <= 28)
+                {
+                    lavoratore.Punteggio += 6;
+                }
+
+                if (lavoratore.Università > 28)
+                {
+                    lavoratore.Punteggio += 6;
+                }
+
+                if (lavoratore.Figli > 0)
+                {
+                    for (int i = 0; i < lavoratore.Figli; i++)
+                    {
+                        lavoratore.Punteggio += 4;
+                    }
+                }
+
+                if (!lavoratore.FedinaPenale)
+                {
+                    lavoratore.Punteggio += 6;
+                }
+
+                if (!lavoratore.Debiti)
+                {
+                    lavoratore.Punteggio += 6;
+                }
+
+                if (lavoratore.PilComune < 1000000)
+                {
+                    lavoratore.Punteggio += 7;
+                }
+
+                if (lavoratore.Punteggio > IndiceBonus && lavoratore.IsAdult)
+                {
+                    Contributo = 10000M;
+                }
+            }
+        }
+
+        internal class Naspi : AssegnoSociale
+        {
+            const int _indiceNaspi = 4;
+
+            public static int IndiceNaspi => _indiceNaspi;
+
+            public override void calcolaAssegno(Person nonLavoratore)
+            {
+                /*if (!_lavoro)
+                {
+                    _punteggio += 1;
+                }
+                if (_cDeterminato)
+                {
+                    _punteggio += 0;
+                }
+                if (_cFullTime)
+                {
+                    _punteggio += 1;
+                }
+                if (_mesiLavoro > 6)
+                {
+                    _punteggio += 1;
+                }
+
+                if (IndiceNaspi >= 4)
+                {
+                    Contributo = 5000M;
+                }*/
             }
         }
     }
