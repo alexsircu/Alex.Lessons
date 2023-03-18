@@ -13,34 +13,40 @@ namespace LeClassi
 
         public override void CalcolaAssegno(Persona person)
         {
-            if (person.Lavoro == false)
+            try
             {
-                Punteggio += 5;
-            }
-            if (person.CDeterminato)
-            {
-                Punteggio += 4;
-            }
-            if (person.CIndeterminato)
-            {
-                Punteggio += 5;
-            }
-            if (person.CFullTime)
-            {
-                Punteggio += 5;
-            }
-            if (person.CPartTime)
-            {
-                Punteggio += 3;
-            }
-            if (person.MesiLavoro > 6)
-            {
-                Punteggio += 3;
-            }
+                NonLavoratore nonLavoratore = (NonLavoratore)person;
 
-            if (Punteggio >= IndiceNaspi && person.IsAdult)
+                if (nonLavoratore.CDeterminato)
+                {
+                    Punteggio += 4;
+                }
+                if (nonLavoratore.CIndeterminato)
+                {
+                    Punteggio += 5;
+                }
+                if (nonLavoratore.CFullTime)
+                {
+                    Punteggio += 5;
+                }
+                if (nonLavoratore.CPartTime)
+                {
+                    Punteggio += 3;
+                }
+                if (nonLavoratore.MesiLavoro > 6)
+                {
+                    Punteggio += 3;
+                }
+
+                if (Punteggio >= IndiceNaspi && person.IsAdult)
+                {
+                    nonLavoratore.Naspi = 5000M;
+                }
+            } 
+            catch (Exception ex)
             {
-                person.Naspi = 5000M;
+                //Console.WriteLine(ex.ToString());
+                Console.WriteLine("Un lavoratore non può accedere al NASPI");
             }
         } 
     }

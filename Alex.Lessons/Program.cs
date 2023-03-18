@@ -6,21 +6,19 @@ namespace LeClassi
     {
         static void Main(string[] args)
         {
-            Persona person1 = new Persona("Bruno", "Ferreira", 40, 92, 29, false, 3, false, true, 900000M, true, false, true, true, false, 5);
+            Persona paolo = new Lavoratore("Paolo", "Fumagalli", 26, 97, 24, false, 14, false, false, 12300000M, 2300, "Determinato");
+            Persona gianluca = new NonLavoratore("Gianluca", "Rossi", 33, 89, 26, false, 0, false, false, 30000000M, true, false, true, false, 23);
 
             AssegnoSociale naspi = new Naspi();
             AssegnoSociale bonus = new Bonus();
 
-            if (person1.Lavoro)
-            {
-                bonus.CalcolaAssegno(person1);
-            } 
-            else if (person1.BonusRicevuto == false)
-            {
-                naspi.CalcolaAssegno(person1);
-            }
+            bonus.CalcolaAssegno(paolo);
+            naspi.CalcolaAssegno(gianluca);
 
-            person1.GetValues();
+            paolo.GetValues();
+
+            //test con lavoratore in naspi
+            //test con nonlavoratore in bonus
         } 
     }
 }

@@ -23,14 +23,6 @@ namespace LeClassi
         decimal _bonus;
         bool _bonusRicevuto = false;
 
-        bool _lavoro;
-        bool _cDeterminato;
-        bool _cIndeterminato;
-        bool _cFullTime;
-        bool _cPartTime;
-        int _mesiLavoro;
-        decimal _naspi;
-
         public string Name { get { return _name; } set { _name = value; } }
         public string Surname { get { return _surname; } set { _surname = value; } }
         public int Age { get { return _age; } set { _age = value; } }
@@ -53,15 +45,7 @@ namespace LeClassi
         public bool IsAdult { get { return _isAdult; } set { _isAdult = value; } }
         public bool Militare { get { return _militare; } set { _militare = value; } }
 
-        public bool Lavoro { get { return _lavoro; } set { _lavoro = value; } }
-        public bool CDeterminato { get { return _cDeterminato; } set { _cDeterminato = value; } }
-        public bool CIndeterminato { get { return _cIndeterminato; } set { _cIndeterminato = value; } }
-        public bool CFullTime { get { return _cFullTime; } set { _cFullTime = value; } }
-        public bool CPartTime { get { return _cPartTime; } set { _cPartTime = value; } }
-        public int MesiLavoro { get { return _mesiLavoro; } set { _mesiLavoro = value; } }
-        public decimal Naspi { get { return _naspi; } set { _naspi = value; } }
-
-        public Persona(string Name, string Surname, int Age, int Maturita, int Università, bool FedinaPenale, int Figli, bool Militare, bool Debiti, decimal PilComune, bool Lavoro, bool CDeterminato, bool CIndeterminato, bool CFullTime, bool CPartTime, int MesiLavoro)
+        public Persona(string Name, string Surname, int Age, int Maturita, int Università, bool FedinaPenale, int Figli, bool Militare, bool Debiti, decimal PilComune)
         {
             this.Name = Name;
             this.Surname = Surname;
@@ -76,13 +60,6 @@ namespace LeClassi
             this.Debiti = Debiti;
             this.PilComune = PilComune;
 
-            this.Lavoro = Lavoro;
-            this.CDeterminato = CDeterminato;
-            this.CIndeterminato = CIndeterminato;
-            this.CPartTime = CPartTime;
-            this.CFullTime = CFullTime;
-            this.MesiLavoro = MesiLavoro;
-
             counter++;
             SetIsAdult();
             //CalcolaBonus();
@@ -96,7 +73,6 @@ namespace LeClassi
             Console.WriteLine($"Maturita:{this.Maturita}");
             Console.WriteLine($"Debiti:{Debiti}");
             Console.WriteLine($"Bonus ricevuto:{this.Bonus}");
-            Console.WriteLine($"Naspi ricevuto:{this.Naspi}");
         }
 
         public int GetCounter()
