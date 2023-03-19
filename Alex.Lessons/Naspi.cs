@@ -17,22 +17,29 @@ namespace LeClassi
             {
                 NonLavoratore nonLavoratore = (NonLavoratore)person;
 
-                if (nonLavoratore.CDeterminato)
+                if (nonLavoratore.NaspiRicevuto == true)
+                {
+                    Console.WriteLine($"{nonLavoratore.Name} ha già ricevuto il NASPI");
+                }
+
+                if (nonLavoratore.Contratto == "Determinato")
+                {
+                    Punteggio += 4;
+                } 
+                else if (nonLavoratore.Contratto == "Indeterminato")
+                {
+                    Punteggio += 5;
+                }
+
+                if (nonLavoratore.TipologiaContratto == "Full-time")
+                {
+                    Punteggio += 5;
+                } 
+                else if (nonLavoratore.Contratto == "Part-time")
                 {
                     Punteggio += 4;
                 }
-                if (nonLavoratore.CIndeterminato)
-                {
-                    Punteggio += 5;
-                }
-                if (nonLavoratore.CFullTime)
-                {
-                    Punteggio += 5;
-                }
-                if (nonLavoratore.CPartTime)
-                {
-                    Punteggio += 3;
-                }
+               
                 if (nonLavoratore.MesiLavoro > 6)
                 {
                     Punteggio += 3;
@@ -46,7 +53,7 @@ namespace LeClassi
             catch (Exception ex)
             {
                 //Console.WriteLine(ex.ToString());
-                Console.WriteLine("Un lavoratore non può accedere al NASPI");
+                Console.WriteLine("Solo un non lavoratore può accedere al NASPI");
             }
         } 
     }

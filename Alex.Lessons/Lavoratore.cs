@@ -19,5 +19,20 @@ namespace LeClassi
             Stipendio = stipendio;
             Contratto = contratto;
         }
+
+        public override void GetValues()
+        {
+            base.GetValues();
+            Console.WriteLine($"Lavoratore con contratto {this.Contratto}");
+            Console.WriteLine($"Stipendio {this.Stipendio}");
+
+            if (this.BonusRicevuto)
+            {
+                Console.WriteLine($"Bonus ricevuto: {Bonus}\n");
+            } else
+            {
+                Console.WriteLine("Nessun bonus ricevuto\n");
+            }
+        }
     }
 }

@@ -11,25 +11,41 @@ namespace LeClassi
 
         bool _cDeterminato;
         bool _cIndeterminato;
+        string _contratto;
+        string _tipologiaContratto;
         bool _cFullTime;
         bool _cPartTime;
         int _mesiLavoro;
         decimal _naspi;
+        bool _naspiRicevuto = false;
 
-        public bool CDeterminato { get { return _cDeterminato; } set { _cDeterminato = value; } }
-        public bool CIndeterminato { get { return _cIndeterminato; } set { _cIndeterminato = value; } }
-        public bool CFullTime { get { return _cFullTime; } set { _cFullTime = value; } }
-        public bool CPartTime { get { return _cPartTime; } set { _cPartTime = value; } }
+        public string Contratto { get { return _contratto; } set { _contratto = value; } }
+        public string TipologiaContratto { get { return _tipologiaContratto; } set { _tipologiaContratto = value; } }
         public int MesiLavoro { get { return _mesiLavoro; } set { _mesiLavoro = value; } }
-        public decimal Naspi { get { return _naspi; } set { _naspi = value; } }
+        public decimal Naspi { get { return _naspi; } set { _naspi = value; NaspiRicevuto = true; } }
+        public bool NaspiRicevuto { get { return _naspiRicevuto; } set { _naspiRicevuto = value; } }
 
-        public NonLavoratore(string Name, string Surname, int Age, int Maturita, int Università, bool FedinaPenale, int Figli, bool Militare, bool Debiti, decimal PilComune, bool CDeterminato, bool CIndeterminato, bool CFullTime, bool CPartTime, int MesiLavoro) : base(Name, Surname, Age, Maturita, Università, FedinaPenale, Figli, Militare, Debiti, PilComune)
+        public NonLavoratore(string Name, string Surname, int Age, int Maturita, int Università, bool FedinaPenale, int Figli, bool Militare, bool Debiti, decimal PilComune, string Contratto, string TipologiaContratto, int MesiLavoro) : base(Name, Surname, Age, Maturita, Università, FedinaPenale, Figli, Militare, Debiti, PilComune)
         {
-            this.CDeterminato = CDeterminato;
-            this.CIndeterminato = CIndeterminato;
-            this.CFullTime = CFullTime;
-            this.CPartTime = CPartTime;
+            this.Contratto = Contratto; //det o indet
+            this.TipologiaContratto = TipologiaContratto; //ft o pt
             this.MesiLavoro = MesiLavoro;
+        }
+
+        public override void GetValues()
+        {
+            base.GetValues();
+            Console.WriteLine($"Ha lavorato con contratto: {this.Contratto}");
+            Console.WriteLine($"Tipologia contratto: {this.TipologiaContratto}");
+
+            if (this.NaspiRicevuto)
+            {
+                Console.WriteLine($"NASPI ricevuto: {this.Naspi}\n");
+            }
+            else
+            {
+                Console.WriteLine("NASPI non ricevuto\n");
+            }
         }
     }
 }

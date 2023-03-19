@@ -26,14 +26,7 @@ namespace LeClassi
         public string Name { get { return _name; } set { _name = value; } }
         public string Surname { get { return _surname; } set { _surname = value; } }
         public int Age { get { return _age; } set { _age = value; } }
-        public decimal Bonus { 
-            get { return _bonus; } 
-            set 
-            { 
-                _bonus = value;
-                BonusRicevuto = true;
-            } 
-        }
+        public decimal Bonus { get { return _bonus; } set { _bonus = value; BonusRicevuto = true; } }
         public bool BonusRicevuto { get { return _bonusRicevuto; } set { _bonusRicevuto = value; } }
         public decimal PilComune { get { return _pilComune; } set { _pilComune = value; } }
         public int Maturita { get { return _maturita; } set { _maturita = value; } }
@@ -62,17 +55,13 @@ namespace LeClassi
 
             counter++;
             SetIsAdult();
-            //CalcolaBonus();
         }
 
-        public void GetValues()
+        public virtual void GetValues()
         {
-            Console.WriteLine($"Nome:{Name}");
-            Console.WriteLine($"Cognome:{Surname}");
-            Console.WriteLine($"Age:{this.Age}");
-            Console.WriteLine($"Maturita:{this.Maturita}");
-            Console.WriteLine($"Debiti:{Debiti}");
-            Console.WriteLine($"Bonus ricevuto:{this.Bonus}");
+            Console.WriteLine($"Nome: {Name}");
+            Console.WriteLine($"Cognome: {Surname}");
+            Console.WriteLine($"Age: {this.Age}");
         }
 
         public int GetCounter()
@@ -91,52 +80,5 @@ namespace LeClassi
                 IsAdult = false;
             }
         }
-
-        /*private void CalcolaBonus()
-        {
-
-            if (this.Maturita >= 90)
-            {
-                Punteggio += 7;
-            }
-
-            if (IsAdult && Age <= 28)
-            {
-                Punteggio += 6;
-            }
-
-            if (Università > 28)
-            {
-                Punteggio += 6;
-            }
-
-            if (Figli > 0)
-            {
-                for (int i = 0; i < Figli; i++)
-                {
-                    Punteggio += 4;
-                }
-            }
-
-            if (!FedinaPenale)
-            {
-                Punteggio += 6;
-            }
-
-            if (!Debiti)
-            {
-                Punteggio += 6;
-            }
-
-            if (this.PilComune < 1000000)
-            {
-                Punteggio += 7;
-            }
-
-            if (Punteggio > IndiceBonus && IsAdult)
-            {
-                this.Bonus = 10000;
-            }
-        }*/
     }
 }
