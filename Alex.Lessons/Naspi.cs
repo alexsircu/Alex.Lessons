@@ -53,7 +53,7 @@ namespace LeClassi
             catch (Exception ex)
             {
                 //Console.WriteLine(ex.ToString());
-                Console.WriteLine("Solo un non lavoratore può accedere al NASPI");
+                Console.WriteLine("Solo un non lavoratore può accedere al NASPI\n");
             }
         } 
     }

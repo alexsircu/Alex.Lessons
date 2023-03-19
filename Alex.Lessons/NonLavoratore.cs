@@ -8,13 +8,8 @@ namespace LeClassi
 {
     internal class NonLavoratore : Persona
     {
-
-        bool _cDeterminato;
-        bool _cIndeterminato;
         string _contratto;
         string _tipologiaContratto;
-        bool _cFullTime;
-        bool _cPartTime;
         int _mesiLavoro;
         decimal _naspi;
         bool _naspiRicevuto = false;

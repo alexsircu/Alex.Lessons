@@ -19,6 +19,7 @@ namespace LeClassi
             AssegnoSociale naspi = new Naspi();
             AssegnoSociale bonus = new Bonus();
 
+            naspi.CalcolaAssegno(paolo);
             bonus.CalcolaAssegno(paolo);
             naspi.CalcolaAssegno(gianluca);
 

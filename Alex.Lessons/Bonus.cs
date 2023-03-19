@@ -17,59 +17,59 @@ namespace LeClassi
             {
                 Lavoratore lavoratore = (Lavoratore)person;
 
-                if (person.BonusRicevuto == true)
+                if (lavoratore.BonusRicevuto == true)
                 {
-                    Console.WriteLine($"{person.Name} ha già ricevuto un bonus");
+                    Console.WriteLine($"{lavoratore.Name} ha già ricevuto un bonus");
                     return;
                 }
 
-                if (person.Maturita >= 90)
+                if (lavoratore.Maturita >= 90)
                 {
                     Punteggio += 7;
                 }
 
-                if (person.IsAdult && person.Age <= 28)
+                if (lavoratore.IsAdult && lavoratore.Age <= 28)
                 {
                     Punteggio += 6;
                 }
 
-                if (person.Università > 28)
+                if (lavoratore.Università > 28)
                 {
                     Punteggio += 6;
                 }
 
-                if (person.Figli > 0)
+                if (lavoratore.Figli > 0)
                 {
-                    for (int i = 0; i < person.Figli; i++)
+                    for (int i = 0; i < lavoratore.Figli; i++)
                     {
                         Punteggio += 4;
                     }
                 }
 
-                if (!person.FedinaPenale)
+                if (!lavoratore.FedinaPenale)
                 {
                     Punteggio += 6;
                 }
 
-                if (!person.Debiti)
+                if (!lavoratore.Debiti)
                 {
                     Punteggio += 6;
                 }
 
-                if (person.PilComune < 1000000)
+                if (lavoratore.PilComune < 1000000)
                 {
                     Punteggio += 7;
                 }
 
-                if (Punteggio > IndiceBonus && person.IsAdult)
+                if (Punteggio > IndiceBonus && lavoratore.IsAdult)
                 {
-                    person.Bonus = 10000M;
+                    lavoratore.Bonus = 10000M;
                 }
             } 
             catch (Exception ex) 
             {
                 //Console.WriteLine(ex.ToString());
-                Console.WriteLine("Solo un lavoratore può accedere al bonus");
+                Console.WriteLine("Solo un lavoratore può accedere al bonus\n");
             }
             
         }
