@@ -20,6 +20,7 @@ namespace LeClassi
                 if (nonLavoratore.NaspiRicevuto == true)
                 {
                     Console.WriteLine($"{nonLavoratore.Name} ha già ricevuto il NASPI");
+                    return;
                 }
 
                 if (nonLavoratore.Contratto == "Determinato")
@@ -35,7 +36,7 @@ namespace LeClassi
                 {
                     Punteggio += 5;
                 } 
-                else if (nonLavoratore.Contratto == "Part-time")
+                else if (nonLavoratore.TipologiaContratto == "Part-time")
                 {
                     Punteggio += 4;
                 }
